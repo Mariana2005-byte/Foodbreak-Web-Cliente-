@@ -3,12 +3,13 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth
 import { getDatabase, ref, onValue, push, set, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBVMweWkY-0yj7UIPgxliUPlQTTNmeDmWU",
-  authDomain: "foodbreak-bfbcb.firebaseapp.com",
-  projectId: "foodbreak-bfbcb",
-  storageBucket: "foodbreak-bfbcb.firebasestorage.app",
-  messagingSenderId: "628379594863",
-  appId: "1:628379594863:web:e528f605e6d952cadf5d9a",
+  apiKey: "AIzaSyDEU4aeYwiJePt6VRgmMDXUF1YwlTu2Cys",
+  authDomain: "foodbreak-d0f8e.firebaseapp.com",
+  databaseURL: "https://foodbreak-d0f8e-default-rtdb.firebaseio.com",
+  projectId: "foodbreak-d0f8e",
+  storageBucket: "foodbreak-d0f8e.firebasestorage.app",
+  messagingSenderId: "39767375461",
+  appId: "1:39767375461:web:1f80e388c23dc83389108c",
   databaseURL: "https://foodbreak-bfbcb-default-rtdb.firebaseio.com/"
 };
 
