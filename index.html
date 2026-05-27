@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delicias Express | Volovanes, Hamburguesas y más</title>
+    <link rel="icon" type="image/png" href="icono.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/tu-codigo.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+
+    <div id="seccionLogin">
+        <div class="cajaAuth" id="loginBox">
+            <h2>Inicio de sesión</h2>
+            <div class="lineaSeparadora"></div>
+            
+            <div class="inputGrupo">
+                <input type="text" id="usuarioLogin" placeholder="Nombre de usuario" required>
+            </div>
+            
+            <div class="inputGrupo">
+                <input type="password" id="claveLogin" placeholder="Contraseña" required>
+            </div>
+            
+            <a href="#" class="olvideClave">¿Olvidó su contraseña?</a>
+            
+            <button class="btnAccion" onclick="iniciarSesion()">Iniciar</button>
+            
+            <p class="cambiarPantalla">Quiero hacer el <a href="#" onclick="irARegistro(event)">registro</a></p>
+        </div>
+
+        <div class="cajaAuth ocultar" id="registroBox">
+            <h2>Crear Cuenta</h2>
+            <div class="lineaSeparadora"></div>
+            
+            <div class="inputGrupo">
+                <input type="text" id="usuarioReg" placeholder="Crea un nombre de usuario" required>
+            </div>
+            
+            <div class="inputGrupo">
+                <input type="password" id="claveReg" placeholder="Crea una contraseña" required>
+            </div>
+            
+            <button class="btnAccion" style="background-color: #d9e1f2;" onclick="registrarUsuario()">Registrarse</button>
+            
+            <p class="cambiarPantalla">¿Ya tienes cuenta? <a href="#" onclick="irALogin(event)">Inicia sesión</a></p>
+        </div>
+    </div>
+
+    <div id="pantallaPrincipal" class="ocultar">
+        <header>
+            <div id="zonaUsuario">
+                <div id="perfilHeader">
+                    <img id="avatarUsuario" src="img/volo.png" alt="Usuario">
+                    <span id="nombreUsuario">Usuario</span>
+                    <button id="btnSalir" onclick="cerrarSesion()">Cerrar Sesión</button>
+                </div>
+            </div>
+
+            <h1>FoodBreak</h1>
+            <nav id="menuCategorias">
+                <button onclick="filtrarCategoria('todos')">Todos</button>
+                <button onclick="filtrarCategoria('volovanes')">Volovanes</button>
+                <button onclick="filtrarCategoria('hojaldras')">Hojaldras</button>
+                <button onclick="filtrarCategoria('tortas')">Tortas</button>
+                <button onclick="filtrarCategoria('burritos')">Burritos</button>
+                <button onclick="filtrarCategoria('pizza')">Pizza</button>
+                <button onclick="filtrarCategoria('bebidas')">Bebidas</button>
+                <button onclick="filtrarCategoria('postres')">Postres</button>
+            </nav>
+        </header>
+
+        <main id="galeriaProductos"></main>
+
+        <div id="botonesFlotantes">
+            <div id="abrirBot" onclick="toggleChatbot()">💬</div>
+            <div id="abrirCarrito" onclick="toggleCarrito()">
+                🛒 <span id="badgeCarrito">0</span>
+            </div>
+        </div>
+
+        <aside id="lateralCarrito">
+            <div class="topSeccion">
+                <h2>Tu Pedido</h2>
+                <button onclick="toggleCarrito()">Cerrar</button>
+            </div>
+            
+            <div id="itemsCarrito"></div>
+            
+            <div class="pieCarrito">
+                <p>Total: $<span id="montoTotal">0.00</span></p>
+                
+                <label for="tipoEntrega">Método de entrega:</label>
+                <select id="tipoEntrega" onchange="revisarMetodoEntrega()">
+                    <option value="local">Pasar al local</option>
+                    <option value="domicilio">Servicio a domicilio</option>
+                </select>
+                
+                <div id="bloqueDireccion" style="display: none; margin-top: 10px; text-align: left;">
+                    <label for="direccionTexto">Dirección de envío:</label>
+                    <input type="text" id="direccionTexto" placeholder="Calle, número, colonia..." style="width: 100%; padding: 8px; margin-top: 5px; border-radius: 6px; border: 1px solid #ccc; font-family: inherit; box-sizing: border-box;">
+                    
+                    <button type="button" onclick="buscarMiUbicacion()" style="width: 100%; margin-top: 8px; padding: 8px; background-color: #3498db; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-family: inherit;">
+                        📍 Usar mi ubicación actual
+                    </button>
+
+                    <div id="mapaEnvio" style="width: 100%; height: 180px; margin-top: 10px; border-radius: 8px; border: 1px solid #ccc;"></div>
+                </div>
+                
+                <button class="btnPagarFinal" onclick="procesarCompra()" style="margin-top: 15px;">Finalizar Pedido</button>
+            </div>
+        </aside>
+
+        <aside id="lateralBot">
+            <div class="topSeccion">
+                <div class="statusBot">
+                    <div class="puntoVerde"></div>
+                    <h2>FoodBot</h2>
+                </div>
+                <button onclick="toggleChatbot()">Cerrar</button>
+            </div>
+            
+            <div id="chatContenedor" class="cuerpoChat">
+                <div class="msgBot">¡Hola! 🧑‍🍳 Bienvenido a FoodBreak. ¿En qué te puedo colaborar hoy?</div>
+            </div>
+
+            <div id="opcionesRapidas">
+                <button class="tagSugerencia" onclick="clickSugerencia('Hacer pedido')">🛒 ¿Cómo pedir?</button>
+                <button class="tagSugerencia" onclick="clickSugerencia('Lo mejor de la casa')">⭐ Lo mejor de la casa</button>
+                <button class="tagSugerencia" onclick="clickSugerencia('Consultar estado del pedido')">📦 Checar estado de pedido</button>
+                <button class="tagSugerencia" onclick="clickSugerencia('Horarios de atención')">🕒 Horarios</button>
+            </div>
+            
+            <div class="pieChat">
+                <input type="text" id="inputChat" placeholder="Escribe un mensaje al menú..." onkeypress="detectarEnter(event)">
+                <button class="btnEnviarMsg" onclick="enviarMensajeManual()">Enviar</button>
+            </div>
+        </aside>
+
+        <footer>
+            <div class="bloqueInfo"><p>Contacto</p></div>
+            <div class="bloqueInfo"><p>Sobre nosotros</p></div>
+            <div class="bloqueInfo"><p>Nos encontramos</p></div>
+        </footer>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

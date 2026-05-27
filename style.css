@@ -1,0 +1,480 @@
+@import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Indie+Flower&family=Jolly+Lodger&family=Odibee+Sans&family=Oswald:wght@200..700&family=Smooch+Sans:wght@100..900&display=swap');
+
+:root {
+    --colorSabor: #ede58d;
+    --textoOscuro: #3f555c;
+    --fondoClaro: #f9f9f9;
+    --rosaAuth: #f3e5eb;
+    --verdeOk: #e2f0d9;
+    --grisBordes: #7f7f7f;
+}
+
+body {
+    font-family: "Chelsea Market", system-ui;
+    margin: 0; 
+    background: var(--fondoClaro);
+    opacity: 0;
+    animation: cargarPantalla 0.6s ease-out forwards;
+}
+
+@keyframes cargarPantalla {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#seccionLogin {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('img/fondo.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.cajaAuth {
+    background: var(--rosaAuth);
+    padding: 45px 40px;
+    border-radius: 24px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 420px;
+    width: 85%;
+    transition: all 0.3s ease;
+}
+
+.cajaAuth h2 {
+    font-size: 32px;
+    margin: 0 0 5px 0;
+    color: #000000;
+    font-weight: normal;
+}
+
+.lineaSeparadora {
+    width: 100%;
+    height: 1px;
+    background-color: var(--grisBordes);
+    margin-bottom: 45px;
+}
+
+.inputGrupo {
+    margin-bottom: 35px;
+    width: 100%;
+}
+
+.inputGrupo input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px solid var(--grisBordes);
+    padding: 8px 0;
+    font-family: "Chelsea Market", system-ui;
+    font-size: 16px;
+    color: #333;
+    box-sizing: border-box;
+}
+
+.inputGrupo input:focus {
+    outline: none;
+    border-bottom-color: #000;
+}
+
+.inputGrupo input::placeholder {
+    color: #a6a6a6;
+}
+
+.olvideClave {
+    display: block;
+    text-align: left;
+    color: #000000;
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 35px;
+    font-family: "Chelsea Market", system-ui;
+}
+
+.btnAccion {
+    background-color: var(--verdeOk);
+    color: #000000;
+    border: none;
+    padding: 12px 0;
+    width: 100%;
+    font-size: 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: "Chelsea Market", system-ui;
+    transition: background-color 0.2s, transform 0.1s;
+    margin-bottom: 25px;
+}
+
+.btnAccion:hover {
+    background-color: #d2e4c8;
+}
+
+.cambiarPantalla {
+    font-size: 14px;
+    color: #000000;
+    margin: 0;
+}
+
+.cambiarPantalla a {
+    color: #ff3333;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+header { 
+    background-image: url(img/fondo.jpg); 
+    color: rgb(223, 225, 97); 
+    padding: 1rem; 
+    text-align: center; 
+    top: 0; 
+    z-index: 100; 
+}
+
+#zonaUsuario {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+#perfilHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 8px 15px;
+    border-radius: 30px;
+    color: white;
+}
+
+#avatarUsuario {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.ocultar {
+    display: none !important;
+}
+
+.vacioTexto {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 24px;
+    color: #7f8c8d;
+    padding: 80px 0;
+    font-family: "Indie Flower", cursive;
+}
+
+h1 {
+    font-size: 100px;
+    margin: 20px 0;
+}
+
+#menuCategorias { 
+    margin-top: 10px; 
+    display: flex; 
+    justify-content: center; 
+    gap: 10px; 
+    overflow-x: auto; 
+    padding-bottom: 5px;
+    font-family: "Indie Flower", cursive; 
+}
+
+#menuCategorias button { 
+    border: none; 
+    padding: 8px 15px; 
+    border-radius: 20px; 
+    cursor: pointer; 
+    font-weight: bold;
+    font-family: "Indie Flower", cursive;
+    transition: all 0.2s ease-in-out;
+}
+
+#menuCategorias button:hover {
+    background-color: var(--colorSabor);
+    transform: translateY(-2px);
+}
+
+#galeriaProductos { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: 20px; 
+    padding: 20px; 
+    background-color: beige;
+    min-height: 400px;
+}
+
+.tarjetaProd { 
+    background: rgb(240, 235, 235); 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+    overflow: hidden; 
+    text-align: center; 
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+    animation: animarTarjeta 0.5s ease-out backwards;
+}
+
+@keyframes animarTarjeta {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tarjetaProd:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+}
+
+.tarjetaProd img { 
+    width: 100%; 
+    height: 180px; 
+    object-fit: cover; 
+}
+
+.tarjetaProd h3 { 
+    margin: 10px 0; 
+}
+
+.tarjetaProd button { 
+    background-color: rgb(200, 222, 233); 
+    color: rgb(26, 26, 26); 
+    border: none; 
+    padding: 14px 30px; 
+    margin-bottom: 15px; 
+    border-radius: 30px; 
+    cursor: pointer;
+    font-family: "Odibee Sans", sans-serif;
+}
+
+button {
+    background-color: #c3e5ba;
+    color: rgb(12, 12, 12);
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: "Indie Flower", cursive;
+}
+
+select {
+    background-color: #cbbae5;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: "Indie Flower", cursive;
+}
+
+#botonesFlotantes {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 200;
+}
+
+#abrirCarrito, #abrirBot { 
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 24px; 
+    cursor: pointer; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
+    transition: transform 0.2s;
+}
+
+#abrirCarrito { background-color: crimson; color: white; }
+#abrirBot { background-color: #3498db; color: white; }
+
+#lateralCarrito, #lateralBot { 
+    position: fixed; 
+    right: -420px; 
+    top: 0; 
+    width: 380px; 
+    height: 100%; 
+    background: beige; 
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1); 
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+    z-index: 300; 
+    padding: 24px; 
+    display: flex; 
+    flex-direction: column; 
+    box-sizing: border-box; 
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+}
+
+#lateralCarrito.activo, #lateralBot.activo { 
+    right: 0; 
+}
+
+.topSeccion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid rgba(0,0,0,0.08);
+    padding-bottom: 14px;
+    flex-shrink: 0;
+}
+
+.statusBot {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.puntoVerde {
+    width: 10px;
+    height: 10px;
+    background-color: #2ecc71;
+    border-radius: 50%;
+}
+
+#itemsCarrito {
+    flex-grow: 1;
+    overflow-y: auto; 
+    margin-top: 15px;
+}
+
+.cuerpoChat {
+    flex-grow: 1;
+    overflow-y: auto; 
+    margin: 15px 0 5px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-right: 5px;
+    min-height: 0; 
+}
+
+#opcionesRapidas {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 8px 0;
+    white-space: nowrap;
+    flex-shrink: 0;
+    border-top: 1px dashed rgba(0,0,0,0.1);
+}
+
+#opcionesRapidas::-webkit-scrollbar {
+    height: 4px;
+}
+#opcionesRapidas::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+}
+
+.tagSugerencia {
+    background: white;
+    border: 2px solid var(--textoOscuro);
+    padding: 8px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: "Chelsea Market", sans-serif;
+    transition: all 0.2s ease-in-out;
+    display: inline-block;
+}
+
+.tagSugerencia:hover {
+    background-color: var(--colorSabor);
+    transform: translateY(-1px);
+}
+
+.msgBot {
+    background: white;
+    border: 2px solid var(--colorSabor);
+    padding: 12px 16px;
+    border-radius: 16px 16px 16px 4px;
+    align-self: flex-start;
+    max-width: 85%;
+    font-size: 14px;
+    line-height: 1.4;
+    word-break: break-word;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    animation: efectoBurbuja 0.3s ease-out;
+}
+
+.msgUsuario {
+    background: var(--textoOscuro);
+    color: white;
+    padding: 12px 16px;
+    border-radius: 16px 16px 4px 16px;
+    align-self: flex-end;
+    max-width: 85%;
+    font-size: 14px;
+    line-height: 1.4;
+    word-break: break-word;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    animation: efectoBurbuja 0.3s ease-out;
+}
+
+@keyframes efectoBurbuja {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.pieCarrito, .pieChat {
+    border-top: 2px solid rgba(0,0,0,0.08);
+    padding-top: 15px;
+    flex-shrink: 0;
+}
+
+.pieChat { display: flex; gap: 8px; }
+
+#inputChat {
+    flex-grow: 1;
+    padding: 12px;
+    border: 2px solid var(--textoOscuro);
+    border-radius: 12px;
+    font-family: "Chelsea Market", sans-serif;
+    font-size: 14px;
+}
+
+.btnEnviarMsg {
+    background: var(--colorSabor);
+    padding: 0 16px;
+    border-radius: 12px;
+    border: 2px solid var(--textoOscuro);
+    cursor: pointer;
+    font-family: "Chelsea Market", sans-serif;
+    font-weight: bold;
+}
+
+.btnPagarFinal { 
+    background: #2ecc71; 
+    color: white; 
+    width: 100%; 
+    padding: 15px; 
+    border-radius: 12px; 
+    cursor: pointer; 
+    margin-top: 10px; 
+    font-weight: bold;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+footer div { flex: 1; min-width: 200px; }
